@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: flashgrid-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: flashgrid
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - flashgrid_pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    container_name: flashgrid-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+volumes:
+  flashgrid_pgdata:
